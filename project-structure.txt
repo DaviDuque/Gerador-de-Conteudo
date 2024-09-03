@@ -1,0 +1,59 @@
+/project-root
+│
+├── /node_modules
+├── /src
+│   ├── /config
+│   │
+│   ├── /database
+│   │   └── database.module.ts # Singleton: Gerencia conexão com o bancos de dados
+│   │
+│   ├── /modules  
+│   │   ├── /control           #Exemplo de modulo adicional
+│   │   │   ├── control.controller.ts     # Controlador 
+│   │   │   ├── control.service.ts        # Service
+│   │   │   └── control.module.ts         # Módulo 
+│   │   │
+│   │   ├── /press
+│   │   │   ├── noticia-original.controller.ts
+│   │   │   ├── noticia-original.module.ts
+│   │   │   ├── noticia-original.service.ts
+│   │   │   ├── noticias.controller.ts
+│   │   │   ├── noticias.module.ts
+│   │   │   └── noticias.service.ts
+│   │   └──...
+│   │
+│   ├── /common
+│   │   ├── decorators
+│   │   │   └── logging.decorator.ts      # Decorator: Adiciona logging
+│   │   │
+│   │   └── filters
+│   │       └── http-exception.filter.ts  # Filtro para tratamento de exceções HTTP
+│   │
+│   ├── /shared
+│   │   ├── /models
+│   │   │   ├── user.entity.ts            # Entidade de Usuário
+│   │   │   ├── control-entity.ts         # Entidade do banco "controle"
+│   │   │   └── press-entity.ts           # Entidade do banco "imprensa"
+│   │
+│   ├── app.module.ts                     # Módulo raiz da aplicação
+│   └── main.ts                           # Ponto de entrada da aplicação
+│   ├── /test
+│       ├── /modules
+│       │   ├── /press
+│       │   │   ├── noticia-original.controller.spec.ts
+│       │   │   ├── noticia-original.service.spec.ts
+│       │   │   ├── noticias.controller.spec.ts
+│       │   │   └── noticias.service.spec.ts
+│       │   └── ...
+├── /dist                                 # Código transpilado (output)
+├── tsconfig.json                         # Configurações do TypeScript
+├── /terraform                            # IoC provisionamento Estrutura
+│       ├── ci-cd.tf                      # Repositorio e deploy
+│       ├── database.tf                   # Banco de dados
+│       └── ...                 
+├── package.json                          # Dependências e scripts do projeto
+├── dockerfile                            # configuração do docker
+├── .env                                  # Variáveis de ambiente
+├── .eslintrc.js                          # padrão de código
+├── project-structure                     # Estrutura de diretário e arquivos do projeto
+└── README.md                             # Documentação do projeto
