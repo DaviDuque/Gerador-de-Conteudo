@@ -9,7 +9,7 @@ import { Request, Response, NextFunction } from 'express';
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
   private validTokens = {
-    // Simulando um sistema de autenticação externo com tokens válidos
+    // Simulando um sistema de autenticação externo com tokens válidos(keycloak, redes sociais)
     'valid-token-123': { userId: 1, username: 'testuser', scope: ['read', 'write'] },
     'valid-token-456': { userId: 2, username: 'anotheruser', scope: ['read'] },
   };

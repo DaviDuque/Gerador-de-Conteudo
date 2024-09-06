@@ -5,13 +5,13 @@ provider "github" {
 }
 
 resource "github_repository" "nodejs_nest_project" {
-  name        = "nodejs-nest-project"
-  description = "Projeto Node.js e Nest.js"
-  visibility  = "public" # ou "private", se desejar um repositório privado
+  name        = "Gerador-de-Conteudo"
+  description = "Gerador de Conteúdo"
+  visibility  = "public" # ou "private"
 
-  auto_init          = true
+  auto_init    = true
   gitignore_template = "Node" # Adiciona um .gitignore para projetos Node.js
-  license_template   = "mit"  # Adiciona uma licença MIT
+  license_template  = "mit" # Adiciona uma licença MIT
 }
 
 # Variáveis

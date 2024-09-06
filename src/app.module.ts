@@ -11,7 +11,7 @@ import { IntelligenceModule } from './modules/intelligence/intelligence.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      isGlobal: true, // Faz o módulo de configuração estar disponível globalmente
+      isGlobal: true,s
     }),
     DatabaseModule,
     AssuntoNoticiaModule,
