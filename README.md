@@ -5,7 +5,7 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
+  <p align="center">Uma Aplicação <a href="http://nodejs.org" target="_blank">Node.js</a> template desenvolvida para uso com bancos relacionais e Inteligência artificial</p>
     <p align="center">
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
 <a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
@@ -22,17 +22,34 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Descrição
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Utilizamos o [Nest](https://github.com/nestjs/nest) framework TypeScript para o desenvolvimento de um tempĺate para serviço API com integração ao Postegres e ao ChatGPT. 
+ <ul>
+   <li>A autenticação pode ser configurada internamente ou integrada à outras ferramentas, como Keycloak.</li>
+   <li>Pode-se configurar mais de um database</li>
+   <li>O provisionamento do banco é feito via terraform assim como o provisioamento do GIT. Caso não queira executar o terraform, utilise o SQL. No arquivo database.tf encontra-se todas as tabelas em SQL.</li>
+   <li>Os testes são configurados com JEST</li>
+ </ul>
 
-## Installation
+
+
+## Instalação
 
 ```bash
 $ npm install
 ```
+## Provisionando Banco na AWS
 
-## Running the app
+```bash
+$ terraform plan
+```
+```bash
+$ terraform apply
+```
+## Executando a aplicação
+<ul>
+   <li>Antes de executar certifique-se de criar um arquivo env na raiz do projeto</li></ul>
 
 ```bash
 # development
@@ -45,7 +62,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## Testes
 
 ```bash
 # unit tests
@@ -58,16 +75,68 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
+## Estrutura
+```
+/project-root
+│
+├── /node_modules
+├── /src
+│   ├── /config
+│   │
+│   ├── /database
+│   │   └── database.module.ts # Singleton: Gerencia conexão com o bancos de dados
+│   │
+│   ├── /modules  
+│   │   ├── /control           #Exemplo de modulo adicional
+│   │   │   ├── control.controller.ts     # Controlador 
+│   │   │   ├── control.service.ts        # Service
+│   │   │   └── control.module.ts         # Módulo 
+│   │   │
+│   │   ├── /press
+│   │   │   ├── noticia-original.controller.ts
+│   │   │   ├── noticia-original.module.ts
+│   │   │   ├── noticia-original.service.ts
+│   │   │   ├── noticias.controller.ts
+│   │   │   ├── noticias.module.ts
+│   │   │   └── noticias.service.ts
+│   │   └──...
+│   │
+│   ├── /common
+│   │   ├── decorators
+│   │   │   └── logging.decorator.ts      # Decorator: Adiciona logging
+│   │   │
+│   │   └── filters
+│   │       └── http-exception.filter.ts  # Filtro para tratamento de exceções HTTP
+│   │
+│   ├── /shared
+│   │   ├── /models
+│   │   │   ├── user.entity.ts            # Entidade de Usuário
+│   │   │   ├── control-entity.ts         # Entidade do banco "controle"
+│   │   │   └── press-entity.ts           # Entidade do banco "imprensa"
+│   │
+│   ├── app.module.ts                     # Módulo raiz da aplicação
+│   └── main.ts                           # Ponto de entrada da aplicação
+│   ├── /test
+│       ├── /modules
+│       │   ├── /press
+│       │   │   ├── noticia-original.controller.spec.ts
+│       │   │   ├── noticia-original.service.spec.ts
+│       │   │   ├── noticias.controller.spec.ts
+│       │   │   └── noticias.service.spec.ts
+│       │   └── ...
+├── /dist                                 # Código transpilado (output)
+├── tsconfig.json                         # Configurações do TypeScript
+├── /terraform                            # IoC provisionamento Estrutura
+│       ├── ci-cd.tf                      # Repositorio e deploy
+│       ├── database.tf                   # Banco de dados
+│       └── ...                 
+├── package.json                          # Dependências e scripts do projeto
+├── dockerfile                            # configuração do docker
+├── .env                                  # Variáveis de ambiente
+├── .eslintrc.js                          # padrão de código
+├── project-structure                     # Estrutura de diretário e arquivos do projeto
+└── README.md                             # Documentação do projeto
+```
 ## License
 
 Nest is [MIT licensed](LICENSE).
