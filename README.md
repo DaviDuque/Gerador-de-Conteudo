@@ -137,6 +137,6 @@ $ npm run test:cov
 ├── project-structure                     # Estrutura de diretário e arquivos do projeto
 └── README.md                             # Documentação do projeto
 ```
-## License
+## Licença
 
 Nest is [MIT licensed](LICENSE).
